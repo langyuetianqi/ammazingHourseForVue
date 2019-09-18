@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="动起来" @click="move">
+        <input type="button" value="停止" @click="stop">
+        <h4>{{msg}}</h4>
+    </div>
+    <script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            msg:'水光潋滟晴方好，山色空蒙雨亦奇',
+            intervalId:null
+        },
+        methods:{
+            move:function(){
+                if(this.intervalId == null){
+                    this.intervalId = setInterval(()=>{
+                        this.msg = this.msg.substring(1) + this.msg.substring(0,1);
+                    },200)
+                }
+            },
+            stop:function(){
+                clearInterval(this.intervalId);
+                console.log(this.intervalId)
+                this.intervalId = null;
+            }
+        }
+    })
+    </script>
+</body>
+</html>

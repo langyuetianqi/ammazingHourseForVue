@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="numA">
+        <select v-model="countType">
+            <option value="+" selected>+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" v-model="numB">
+        <div>
+            <input type="button" value="计算" @click="count">
+            结果为：<input type="text" v-model="outPut">
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                numA:"",
+                numB:"",
+                countType:"+",
+                outPut:""
+            },
+            methods:{
+                count:function(){
+                    //第一种传统计算方式
+                    // switch(this.countType){
+                    //     case "+":this.outPut = parseInt(this.numA) + parseInt(this.numB);break;
+                    //     case "-":this.outPut = parseInt(this.numA) - parseInt(this.numB);break;
+                    //     case "*":this.outPut = parseInt(this.numA) * parseInt(this.numB);break;
+                    //     case "/":this.outPut = parseInt(this.numA) / parseInt(this.numB);break;
+                    // }
+
+                    //第二种计算方式 投机取巧
+                    var codeStr = "parseInt(this.numA)" + this.countType + "parseInt(this.numB)";
+                    this.outPut = eval(codeStr);//使用eval函数解析字符串
+                }
+            }
+        })
+    </script>
+</body>
+</html>
