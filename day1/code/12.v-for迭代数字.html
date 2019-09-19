@@ -9,21 +9,17 @@
 </head>
 <body>
     <div id="app">
-        <!-- 对象就是无序键值对的集合 -->
-        <h1 :style="styleObj1">这是一个h1</h1>
-
-        <h1 :style="[styleObj1,styleObj2]">这是一个h1</h1>
+        <!-- 注意：如果使用v-for 迭代数字的话，前面的count值 从1 开始 -->
+        <p v-for="count in 10">这是第{{count}}次</p>
     </div>
-
     <script>
         var vm = new Vue({
             el:'#app',
             data:{
-                styleObj1:{color:'red','font-weight':'200'},
-                styleObj2:{'font-style':'italic'}
+                
             },
             methods:{
-
+                
             }
         })
     </script>

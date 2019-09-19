@@ -9,18 +9,13 @@
 </head>
 <body>
     <div id="app">
-        <!-- 对象就是无序键值对的集合 -->
-        <h1 :style="styleObj1">这是一个h1</h1>
-
-        <h1 :style="[styleObj1,styleObj2]">这是一个h1</h1>
+        <p v-for='(item,index) in list'>{{index}}:::{{item}}</p>
     </div>
-
     <script>
         var vm = new Vue({
             el:'#app',
             data:{
-                styleObj1:{color:'red','font-weight':'200'},
-                styleObj2:{'font-style':'italic'}
+                list:[1,2,3,4,5,6]
             },
             methods:{
 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <label>
+                id:
+                <input type="text" v-model="id">
+        </label>
+        <label>
+                name:
+                <input type="text" v-model="name">
+        </label>
+       
+        <input type="button" value="提交" @click="update">
+        <!-- 注意：v-for 循环是 key属性只能用 String 或 number -->
+        <!-- key 在使用时必须使用 v-bind 属性 绑定的形式，指定key的值 -->
+        <p v-for="item in list" :key="item.id">
+            <input type="checkbox">
+            id:{{item.id}}---{{item.name}}
+        </p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                id:"",
+                name:"",
+                list:[
+                    {id:1,name:'李斯'},
+                    {id:2,name:'嬴政'},
+                    {id:3,name:'赵高'},
+                    {id:4,name:'韩非'},
+                    {id:5,name:'荀子'},
+                ]
+                
+            },
+            methods:{
+                update:function(){
+                    if(this.id != "" && this.name != ""){
+                        var value = {
+                            id:this.id,
+                            name:this.name
+                        }
+                        this.list.unshift(value)
+                        this.id="";
+                        this.name="";
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
